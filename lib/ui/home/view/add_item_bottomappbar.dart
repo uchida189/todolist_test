@@ -50,7 +50,6 @@ class _AddItemBottomAppBarState extends ConsumerState<AddItemBottomAppBar>{
   Widget _addItemTitleTextField(){
     return TextField(
       controller: _addItemTitleController,  // コントローラーを設定する
-      autofocus: true,  // 自動でフォーカスする
       maxLines: 3,      // 最大行数
       minLines: 1,      // 最小行数
       decoration: const InputDecoration(

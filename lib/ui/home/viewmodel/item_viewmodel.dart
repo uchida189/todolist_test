@@ -80,6 +80,12 @@ class ItemViewModel {
     await itemModelRepository.deleteItem(id);
   }
   
+  // 完了済みの全てのアイテムを削除する関数 (Viewで呼び出される)
+  Future<void> deleteAllCompletedItems() async {
+    // itemModelRepositoryのメソッドを呼び出して、データベースから完了済みの全てのアイテムを削除する
+    await itemModelRepository.deleteAllCompletedItems();
+  }
+  
   // アイテムを更新する関数 (Viewで呼び出される)
   // 引数: 更新対象のID
   // 引数: 更新後のタイトル

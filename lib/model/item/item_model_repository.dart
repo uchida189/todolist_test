@@ -72,6 +72,19 @@ class ItemModelRepository {
     });
   }
   
+  // 完了済みの全てのアイテムを削除する処理(ViewModelで呼び出される)
+  Future<void> deleteAllCompletedItems() async {
+    await isar.writeTxn(() async {
+      // 完了済みの全てのアイテムを検索するクエリ
+      final query = isar.itemModels.filter().isDoneEqualTo(true);
+      // 完了済みの全てのアイテムのIDを取得する
+      final completedItemsIdList = await query.findAll().then((value) => value.map((e) => e.id).toList());
+      
+      // 完了済みの全てのアイテムを削除する
+      await isar.itemModels.deleteAll(completedItemsIdList);
+    });
+  }
+  
   // アイテムを更新(編集)する処理(ViewModelで呼び出される)
   // 引数: 更新対象のID
   // 引数: 更新後のタイトル

@@ -66,19 +66,11 @@ class _ItemListViewState extends ConsumerState<ItemListView> {
   // 引数: アイテムのデータ
   Widget _itemListTile(Map<String, dynamic> item) {
     final CheckBoxWidget checkBoxWidget = CheckBoxWidget(item: item); // チェックボックスクラスのインスタンス
-    final String title = item['title'];       // タイトル 
-    final String subtitle = item['subtitle']; // サブタイトル(メモ)
-    return Theme(
-      // ExpansionTileを展開した時に表示される区切り線を消す
-      data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-      child: ExpansionTile(
-        title: Text(title),         // タイトル
-        leading: checkBoxWidget,    // チェックボックス
-        children: [
-          Text(subtitle),           // サブタイトル(メモ)
-          Text(item['id'].toString()),  //* id(デバッグ用)
-        ],
-      ),
+    final String title = item['title']; // タイトル 
+    return ListTile(
+      title: Text(title),       // タイトル
+      leading: checkBoxWidget,  // チェックボックス
+      subtitle: Text(item['id'].toString()),  //* id(デバッグ用)
     );
   }
 }
@@ -99,13 +91,17 @@ class CheckBoxWidget extends ConsumerStatefulWidget{
 class _CheckBoxWidgetState extends ConsumerState<CheckBoxWidget> {
   @override
   Widget build(BuildContext context) {
-    return Checkbox(
-      // チェックボックスの状態
-      value: widget.item['isDone'],
-      onChanged: (isDone) {
-        // アイテムのチェックボックスの状態を更新する
-        _updateItemCheckBox(widget.item);
-      },
+    return Transform.scale(
+      scale: 1.5, // チェックボックスの拡大率
+      child: Checkbox(
+        value: widget.item['isDone'],     // チェックボックスの状態
+        shape: const CircleBorder(),      // 丸いチェックボックスにする
+        side: const BorderSide(width: 1), // 枠線の太さ
+        onChanged: (isDone) {
+          // アイテムのチェックボックスの状態を更新する
+          _updateItemCheckBox(widget.item);
+        },
+      ),
     );
   }
   

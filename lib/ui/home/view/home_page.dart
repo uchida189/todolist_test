@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import './add_item_bottomappbar.dart';
+import './delete_all_completed_item_floatingactionbutton.dart';
 import './item_list_view.dart';
 
 class MyHomePage extends ConsumerStatefulWidget {
@@ -21,6 +22,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   final ItemListView _itemListView = const ItemListView();
   // アイテムを追加するボトムナビゲーションバーのクラスのインスタンス
   final AddItemBottomAppBar _addItemBottomAppBar = const AddItemBottomAppBar();
+  // 完了済みの全てのアイテムを削除するフローティングアクションボタンのクラスのインスタンス
+  final DeleateAllCompletedItemFloatingActionButton _deleateAllCompletedItemFloatingActionButton = const DeleateAllCompletedItemFloatingActionButton();
   
   @override
   Widget build(BuildContext context) {
@@ -37,6 +40,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
       ),
       // ボトムナビゲーションバー
       bottomNavigationBar: _addItemBottomAppBar,
+      // フローティングアクションボタン
+      floatingActionButton: _deleateAllCompletedItemFloatingActionButton,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
   
