@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../provider/item_viewmodel_provider.dart';
 
 
-// アイテムのリストのクラス
+// アイテムのリストを表示するクラス
 class ItemListView extends ConsumerStatefulWidget{
   const ItemListView({Key? key}) : super(key: key);
   

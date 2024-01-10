@@ -22,7 +22,6 @@ class _AddItemFloatingActionButtonState extends ConsumerState<AddItemFloatingAct
     _addItemSubtitle = '';    // 追加するアイテムのタイトルを初期化する
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // シートの高さ上限をなくす
       builder: (context) => _addItemBottomSheet() // シートを表示する
     );
   }
@@ -49,26 +48,13 @@ class _AddItemFloatingActionButtonState extends ConsumerState<AddItemFloatingAct
   //? こういうのはpageにしよう
   Widget _addItemBottomSheet(){
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisSize: MainAxisSize.min, // シートの高さを中身の大きさに合わせる
-        children: [
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                padding: const EdgeInsets.only(left: 10),
-                width: MediaQuery.of(context).size.width*0.75,
-                height: 40,
-                child: _addItemTitleTextField() // タイトルを入力するテキストフィールド
-              ),
-              _addItemButton(), // アイテムを追加するボタン
-            ],
-          ),
-          SizedBox(height: MediaQuery.of(context).viewInsets.bottom), // キーボードの高さ分の余白
-        ]
-      ),
+      height: 400,
+      child: Column(children: [
+        const Text('追加するアイテムの情報を入力してください'),
+        _addItemTitleTextField(),     // タイトルを入力するテキストフィールド
+        _addItemSubtitleTextField(),  // サブタイトル(メモ)を入力するテキストフィールド
+        _addItemButton(),             // アイテムを追加するボタン
+      ]),
     );
   }
   
@@ -76,12 +62,10 @@ class _AddItemFloatingActionButtonState extends ConsumerState<AddItemFloatingAct
   Widget _addItemTitleTextField(){
     return TextField(
       autofocus: true,
-      textAlignVertical: TextAlignVertical.bottom,
+      textInputAction: TextInputAction.next,  // キーボードの右下のボタンの表示を変更する
+      
       controller: TextEditingController(text: _addItemTitle),           // 初期値を設定する
-      decoration: const InputDecoration(
-        hintText: 'やること',
-        border: OutlineInputBorder()
-      ),  // 枠線を表示する
+      decoration: const InputDecoration(border: OutlineInputBorder()),  // 枠線を表示する
       onChanged: (value) {
         // タイトルを更新する
         _addItemTitle = value;
@@ -103,7 +87,7 @@ class _AddItemFloatingActionButtonState extends ConsumerState<AddItemFloatingAct
   
   // アイテムを追加するボタン
   Widget _addItemButton(){
-    return FilledButton(
+    return ElevatedButton(
       onPressed: () {
         Navigator.of(context).pop();
         _doneAddItemButton();

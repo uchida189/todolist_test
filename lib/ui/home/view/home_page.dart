@@ -8,8 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import './add_item_floating_action_button.dart';
 import './item_list_view.dart';
-//import '../viewmodel/item_viewmodel.dart';
-//import '../../../provider/item_viewmodel_provider.dart';
 
 class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key});
