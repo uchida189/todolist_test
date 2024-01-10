@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import './add_item_floating_action_button.dart';
+import './add_item_bottomappbar.dart';
 import './item_list_view.dart';
 
 class MyHomePage extends ConsumerStatefulWidget {
@@ -19,8 +19,8 @@ class MyHomePage extends ConsumerStatefulWidget {
 class _MyHomePageState extends ConsumerState<MyHomePage> {
   // アイテムのリストのクラスのインスタンス
   final ItemListView _itemListView = const ItemListView();
-  // アイテムを追加するフローティングアクションボタンのクラスのインスタンス
-  final AddItemFloatingActionButton _addItemFloatingActionButton = const AddItemFloatingActionButton();
+  // アイテムを追加するボトムナビゲーションバーのクラスのインスタンス
+  final AddItemBottomAppBar _addItemBottomAppBar = const AddItemBottomAppBar();
   
   @override
   Widget build(BuildContext context) {
@@ -35,10 +35,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           ),
         ]),
       ),
-      // フローティングアクションボタン
-      floatingActionButton: _addItemFloatingActionButton,
       // ボトムナビゲーションバー
-      bottomNavigationBar: _bottomNavigationBar(),
+      bottomNavigationBar: _addItemBottomAppBar,
     );
   }
   
@@ -47,28 +45,6 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
    => AppBar(
     backgroundColor: Theme.of(context).colorScheme.inversePrimary,
     title: const Text('Flutter Demo Home Page'),
-  );
-  
-  // ボトムナビゲーションバー
-  Widget _bottomNavigationBar()
-   => BottomNavigationBar(
-    items: const [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: 'Home',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.business),
-        label: 'Business',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.school),
-        label: 'School',
-      ),
-    ],
-    currentIndex: 0,
-    selectedItemColor: Theme.of(context).colorScheme.primary,
-    onTap: (index) {},
   );
 }
 
