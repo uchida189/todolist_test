@@ -1,11 +1,11 @@
 ・item～って名前のクラス名をToDoItem～にした方が分かりやすそう
 ・ViewModelでshowBottomSheetとかもやるべきなのか？そこまでしなくても良いのか？
   UI関連のロジックとは言うけども
-・item_kist_viewにて、itemList.removeAtなしにできないか？
+・item_list_viewにて、itemList.removeAtなしにできないか？
     というかaddItemは問題ないのにdeleatはアウトなのなんなん
     ・itemListをLiveDataにすると、itemListの変更を検知してくれるのか？
 ・関数でViewModelのインスタンスを取得するのは、何度も行う関数なら良くないのでは？
-・ExpansionTileじゃなくても良いかな
+済・ExpansionTileじゃなくても良いかな
 
 <追加機能>
 ・初期化機能(DBの基本操作だと思うからやろう)
